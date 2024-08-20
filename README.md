@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# バカラ・モンテカルロ法シミュレーター
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## プロジェクト概要
 
-## Available Scripts
+このプロジェクトは、バカラゲームにおけるモンテカルロ法を用いたベッティング戦略のシミュレーションを行うReactアプリケーションです。ユーザーは初期投資額、初期残高、最大ラウンド数、シミュレーション回数を入力し、結果を確認することができます。
 
-In the project directory, you can run:
+**注意**: このシミュレーターは教育目的のみで使用してください。実際のギャンブルでの使用はお勧めしません。
 
-### `npm start`
+## デモ
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+このアプリケーションはGitHub Pagesでホストされています。以下のURLでアクセスできます：
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[https://ykitaguchi77.github.io/montecarlo-simulator/](https://ykitaguchi77.github.io/montecarlo-simulator/)
 
-### `npm test`
+## 機能
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 初期投資額、初期残高、最大ラウンド数、シミュレーション回数のカスタマイズ
+- モンテカルロ法を用いたバカラゲームのシミュレーション
+- シミュレーション結果の詳細な統計情報の表示
 
-### `npm run build`
+## 使用方法
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. アプリケーションのインターフェースで、以下のパラメータを入力します：
+   - 初期投資額
+   - 初期残高
+   - 最大ラウンド数
+   - シミュレーション回数
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. "シミュレーション実行" ボタンをクリックします。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. 結果セクションで、以下の情報を確認します：
+   - 平均最終残高
+   - 破産確率
+   - 元金を下回る確率
+   - 利益を出せる確率
+   - 利益が出た場合の平均最終額
+   - 利益が出た場合の最高額
+   - 最終の最低残高
 
-### `npm run eject`
+## 技術スタック
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- React.js
+- Create React App
+- Tailwind CSS
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ローカルでのセットアップ手順
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. リポジトリをクローンします：
+   ```
+   git clone https://github.com/ykitaguchi77/montecarlo-simulator.git
+   cd montecarlo-simulator
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. 依存関係をインストールします：
+   ```
+   npm install
+   ```
 
-## Learn More
+3. アプリケーションを起動します：
+   ```
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. ブラウザで `http://localhost:3000` を開いてアプリケーションにアクセスします。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ライセンス
 
-### Code Splitting
+このプロジェクトは [MITライセンス](LICENSE) の下で公開されています。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 免責事項
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+このシミュレーターは純粋に教育および研究目的で作成されています。実際のギャンブルやベッティングでの使用は推奨されません。ギャンブルには財政的リスクが伴い、中毒性がある可能性があります。常に責任を持って行動し、必要な場合は専門家の助言を求めてください。
