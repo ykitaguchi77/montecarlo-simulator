@@ -1,4 +1,4 @@
-# バカラ・モンテカルロ法シミュレーター要件書
+# バカラ・モンテカルロ法シミュレーター 要件定義書
 
 ## 1. プロジェクト概要
 
@@ -9,6 +9,7 @@
 - React.js
 - Create React App
 - Tailwind CSS
+- GitHub Pages（デプロイ用）
 
 ## 3. フォルダ構成
 
@@ -18,57 +19,80 @@ montecarlo-simulator/
 ├── public/
 │   ├── index.html
 │   ├── favicon.ico
-│   └── manifest.json
+│   ├── manifest.json
+│   └── .nojekyll
 │
 ├── src/
 │   ├── App.js
 │   ├── index.js
 │   └── index.css
 │
+├── .gitignore
 ├── package.json
+├── package-lock.json
 ├── tailwind.config.js
+├── postcss.config.js
 └── README.md
 ```
 
-## 4. セットアップ手順
+## 4. 主要ファイルの内容
 
-1. 新しいCreate React Appプロジェクトを作成します：
-   ```
-   npx create-react-app montecarlo-simulator
-   cd montecarlo-simulator
-   ```
+### package.json
 
-2. 必要な依存関係をインストールします：
-   ```
-   npm install tailwindcss@latest postcss@latest autoprefixer@latest
-   ```
+```json
+{
+  "name": "montecarlo-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@headlessui/react": "^2.1.2",
+    "@heroicons/react": "^2.1.5",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && cp public/.nojekyll build/.nojekyll",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.1.1",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
+  },
+  "homepage": "https://ykitaguchi77.github.io/montecarlo-simulator"
+}
+```
 
-3. Tailwind CSSの設定ファイルを生成します：
-   ```
-   npx tailwindcss init -p
-   ```
-
-4. `tailwind.config.js`ファイルを以下のように編集します：
-   ```javascript
-   module.exports = {
-     content: [
-       "./src/**/*.{js,jsx,ts,tsx}",
-     ],
-     theme: {
-       extend: {},
-     },
-     plugins: [],
-   }
-   ```
-
-5. `src/index.css`ファイルを以下の内容で上書きします：
-   ```css
-   @import 'tailwindcss/base';
-   @import 'tailwindcss/components';
-   @import 'tailwindcss/utilities';
-   ```
-
-6. `src/App.js`ファイルを以下のコードで上書きします：
+### src/App.js
 
 ```javascript
 import React, { useState } from 'react';
@@ -241,86 +265,54 @@ const BaccaratSimulator = () => {
 export default BaccaratSimulator;
 ```
 
-7. `src/index.js`ファイルを以下のように編集します：
-   ```javascript
-   import React from 'react';
-   import ReactDOM from 'react-dom/client';
-   import './index.css';
-   import BaccaratSimulator from './App';
+## 5. セットアップ手順
 
-   const root = ReactDOM.createRoot(document.getElementById('root'));
-   root.render(
-     <React.StrictMode>
-       <BaccaratSimulator />
-     </React.StrictMode>
-   );
+1. リポジトリをクローンします：
+   ```
+   git clone https://github.com/ykitaguchi77/montecarlo-simulator.git
+   cd montecarlo-simulator
    ```
 
-8. アプリケーションを起動します：
+2. 依存関係をインストールします：
+   ```
+   npm install
+   ```
+
+3. 開発サーバーを起動します：
    ```
    npm start
    ```
 
-## 5. 機能要件
+4. ブラウザで `http://localhost:3000` を開いてアプリケーションにアクセスします。
 
-1. ユーザーは以下のパラメータを入力できます：
-   - 初期投資額
-   - 初期残高
-   - 最大ラウンド数
-   - シミュレーション回数
+## 6. デプロイ手順
 
-2. "シミュレーション実行"ボタンをクリックすると、入力されたパラメータに基づいてシミュレーションが実行されます。
-
-3. シミュレーション結果は以下の情報を含みます：
-   - 平均最終残高
-   - 破産確率
-   - 元金を下回る確率
-   - 利益を出せる確率
-   - 利益が出た場合の平均最終額
-   - 利益が出た場合の最高額
-   - 最終の最低残高
-
-4. 入力フィールドは文字列として扱われ、ユーザーは値を完全に消去して再入力することができます。
-
-5. シミュレーション実行時に、入力された文字列は数値に変換されます。
-
-## 6. 非機能要件
-
-1. アプリケーションはレスポンシブデザインで、様々な画面サイズに対応します。
-
-2. Tailwind CSSを使用してスタイリングを行い、モダンで見やすいUIを提供します。
-
-3. シミュレーション実行時の計算は効率的に行われ、ユーザーに過度の待ち時間を感じさせないようにします。
-
-## 7. デプロイ
-
-GitHub Pagesを使用してアプリケーションをデプロイする場合は、以下の手順を実行します：
-
-1. `package.json`ファイルに以下のスクリプトを追加します：
+1. `package.json` ファイルの `homepage` フィールドが正しく設定されていることを確認します：
    ```json
-   "scripts": {
-     "predeploy": "npm run build",
-     "deploy": "gh-pages -d build",
-     ...
-   }
+   "homepage": "https://ykitaguchi77.github.io/montecarlo-simulator"
    ```
 
-2. GitHub Pagesのデプロイメント用パッケージをインストールします：
+2. public フォルダに `.nojekyll` ファイルを作成します：
    ```
-   npm install gh-pages --save-dev
-   ```
-
-3. `package.json`ファイルに`homepage`フィールドを追加します：
-   ```json
-   {
-     "homepage": "https://yourusername.github.io/montecarlo-simulator",
-     ...
-   }
+   touch public/.nojekyll
    ```
 
-4. アプリケーションをビルドしてデプロイします：
+3. GitHub Pages 用にビルドしデプロイします：
    ```
    npm run deploy
    ```
 
-以上の要件に従ってアプリケーションを実装することで、バカラ・モンテカルロ法シミュレーターを再現することができます。
+4. GitHub リポジトリの Settings > Pages で、Source が "gh-pages" ブランチの "/" (root) に設定されていることを確認します。
+
+## 7. 注意事項
+
+- このシミュレーターは教育目的のみで使用し、実際のギャンブルには使用しないでください。
+- シミュレーション結果は確率的なものであり、実際の結果を保証するものではありません。
+- 大量のシミュレーションを実行する場合、ブラウザの処理能力に応じて時間がかかる場合があります。
+
+## 8. 今後の改善点
+
+- パフォーマンスの最適化（大量シミュレーション時）
+- グラフィカルな結果表示（チャートやグラフの導入）
+- より詳細なシミュレーションオプションの追加
+- ユーザー体験の向上（入力バリデーション、ローディング表示など）
