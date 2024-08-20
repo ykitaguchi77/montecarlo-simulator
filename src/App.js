@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
-
-// ここに generateInitialSequence, baccaratMonteCarlo, runSimulation 関数を記述
-
 const BaccaratSimulator = () => {
-  const [initialInvestment, setInitialInvestment] = useState(4000);
-  const [initialBalance, setInitialBalance] = useState(60000);
-  const [maxRounds, setMaxRounds] = useState(50);
-  const [numSimulations, setNumSimulations] = useState(10000);
+  const [initialInvestment, setInitialInvestment] = useState('4000');
+  const [initialBalance, setInitialBalance] = useState('60000');
+  const [maxRounds, setMaxRounds] = useState('50');
+  const [numSimulations, setNumSimulations] = useState('10000');
   const [results, setResults] = useState(null);
 
   const handleSimulation = () => {
     const simulationResults = runSimulation(
-      initialInvestment,
-      initialBalance,
-      maxRounds,
-      numSimulations
+      Number(initialInvestment),
+      Number(initialBalance),
+      Number(maxRounds),
+      Number(numSimulations)
     );
     setResults(simulationResults);
   };
@@ -34,37 +30,37 @@ const BaccaratSimulator = () => {
           <div>
             <label className="block mb-2">初期投資額</label>
             <input
-              type="number"
+              type="text"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={initialInvestment}
-              onChange={(e) => setInitialInvestment(Number(e.target.value))}
+              onChange={(e) => setInitialInvestment(e.target.value)}
             />
           </div>
           <div>
             <label className="block mb-2">初期残高</label>
             <input
-              type="number"
+              type="text"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={initialBalance}
-              onChange={(e) => setInitialBalance(Number(e.target.value))}
+              onChange={(e) => setInitialBalance(e.target.value)}
             />
           </div>
           <div>
             <label className="block mb-2">最大ラウンド数</label>
             <input
-              type="number"
+              type="text"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={maxRounds}
-              onChange={(e) => setMaxRounds(Number(e.target.value))}
+              onChange={(e) => setMaxRounds(e.target.value)}
             />
           </div>
           <div>
             <label className="block mb-2">シミュレーション回数</label>
             <input
-              type="number"
+              type="text"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={numSimulations}
-              onChange={(e) => setNumSimulations(Number(e.target.value))}
+              onChange={(e) => setNumSimulations(e.target.value)}
             />
           </div>
         </div>
@@ -93,5 +89,3 @@ const BaccaratSimulator = () => {
     </div>
   );
 };
-
-export default BaccaratSimulator;
